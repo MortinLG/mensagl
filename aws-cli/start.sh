@@ -47,33 +47,33 @@ DESCRIPTION="Mensagl Security groups"
 MY_IP="0.0.0.0/0"
 
 # Create VPC
-VPC_ID=$(aws ec2 create-vpc --cidr-block "10.0.0.0/16" --instance-tenancy "default" \
+VPC_ID=$(aws ec2 create-vpc --cidr-block "10.214.0.0/16" --instance-tenancy "default" \
   --tag-specifications "ResourceType=vpc,Tags=[{Key=Name,Value=${VPC_NAME}-vpc}]" \
   --query 'Vpc.VpcId' --output text)
 aws ec2 modify-vpc-attribute --vpc-id $VPC_ID --enable-dns-hostnames
 
 # Public Subnet 1
-SUBNET_PUBLIC1=$(aws ec2 create-subnet --vpc-id $VPC_ID --cidr-block "10.0.1.0/24" \
+SUBNET_PUBLIC1=$(aws ec2 create-subnet --vpc-id $VPC_ID --cidr-block "10.214.1.0/24" \
   --availability-zone $AVAILABILITY_ZONE1 \
   --tag-specifications "ResourceType=subnet,Tags=[{Key=Name,Value=${VPC_NAME}-subnet-public1-${AVAILABILITY_ZONE1}}]" \
   --query 'Subnet.SubnetId' --output text)
 aws ec2 modify-subnet-attribute --subnet-id $SUBNET_PUBLIC1 --map-public-ip-on-launch
 
 # Public Subnet 2
-SUBNET_PUBLIC2=$(aws ec2 create-subnet --vpc-id $VPC_ID --cidr-block "10.0.2.0/24" \
+SUBNET_PUBLIC2=$(aws ec2 create-subnet --vpc-id $VPC_ID --cidr-block "10.214.2.0/24" \
   --availability-zone $AVAILABILITY_ZONE2 \
   --tag-specifications "ResourceType=subnet,Tags=[{Key=Name,Value=${VPC_NAME}-subnet-public2-${AVAILABILITY_ZONE2}}]" \
   --query 'Subnet.SubnetId' --output text)
 aws ec2 modify-subnet-attribute --subnet-id $SUBNET_PUBLIC2 --map-public-ip-on-launch
 
 # Private Subnet 1
-SUBNET_PRIVATE1=$(aws ec2 create-subnet --vpc-id $VPC_ID --cidr-block "10.0.3.0/24" \
+SUBNET_PRIVATE1=$(aws ec2 create-subnet --vpc-id $VPC_ID --cidr-block "10.214.3.0/24" \
   --availability-zone $AVAILABILITY_ZONE1 \
   --tag-specifications "ResourceType=subnet,Tags=[{Key=Name,Value=${VPC_NAME}-subnet-private1-${AVAILABILITY_ZONE1}}]" \
   --query 'Subnet.SubnetId' --output text)
 
 # Private Subnet 2
-SUBNET_PRIVATE2=$(aws ec2 create-subnet --vpc-id $VPC_ID --cidr-block "10.0.4.0/24" \
+SUBNET_PRIVATE2=$(aws ec2 create-subnet --vpc-id $VPC_ID --cidr-block "10.214.4.0/24" \
   --availability-zone $AVAILABILITY_ZONE2 \
   --tag-specifications "ResourceType=subnet,Tags=[{Key=Name,Value=${VPC_NAME}-subnet-private2-${AVAILABILITY_ZONE2}}]" \
   --query 'Subnet.SubnetId' --output text)
@@ -290,8 +290,8 @@ echo "RDS Endpoint: $RDS_ENDPOINT"
 ###########################################################################################################
 
 
-SRC_DIR="./user-data/vms"
-DEST_DIR="./user-data/result"
+SRC_DIR="../user-data/vms"
+DEST_DIR="../user-data/result"
 
 mkdir -p "$DEST_DIR";
 cp -r "$SRC_DIR/"* "$DEST_DIR/";
@@ -322,7 +322,7 @@ echo "SCRIPTS MODIFIED";
 INSTANCE_NAME="PROXY-1"
 SUBNET_ID="${SUBNET_PUBLIC1}"
 SECURITY_GROUP_ID="${SG_ID_PROXY}"
-PRIVATE_IP="10.0.1.10"
+PRIVATE_IP="10.214.1.10"
 
 INSTANCE_TYPE="t2.micro"
 KEY_NAME="${KEY_NAME}"
@@ -351,7 +351,7 @@ echo "${INSTANCE_NAME} created"
 INSTANCE_NAME="PROXY-2"
 SUBNET_ID="${SUBNET_PUBLIC2}"
 SECURITY_GROUP_ID="${SG_ID_PROXY}"
-PRIVATE_IP="10.0.2.10"
+PRIVATE_IP="10.214.2.10"
 
 INSTANCE_TYPE="t2.micro"
 KEY_NAME="${KEY_NAME}"
@@ -382,7 +382,7 @@ echo "${INSTANCE_NAME} created"
 INSTANCE_NAME="MYSQL-1"
 SUBNET_ID="${SUBNET_PRIVATE1}"
 SECURITY_GROUP_ID="${SG_ID_MYSQL}"
-PRIVATE_IP="10.0.3.10"
+PRIVATE_IP="10.214.3.10"
 
 INSTANCE_TYPE="t2.micro"
 KEY_NAME="${KEY_NAME}"
@@ -410,7 +410,7 @@ echo "${INSTANCE_NAME} created"
 INSTANCE_NAME="MYSQL-2"
 SUBNET_ID="${SUBNET_PRIVATE1}"
 SECURITY_GROUP_ID="${SG_ID_MYSQL}"
-PRIVATE_IP="10.0.3.20"
+PRIVATE_IP="10.214.3.20"
 
 INSTANCE_TYPE="t2.micro"
 KEY_NAME="${KEY_NAME}"
@@ -440,7 +440,7 @@ echo "${INSTANCE_NAME} created"
 INSTANCE_NAME="XMPP-1"
 SUBNET_ID="${SUBNET_PRIVATE1}"
 SECURITY_GROUP_ID="${SG_ID_XMPP}"
-PRIVATE_IP="10.0.3.100"
+PRIVATE_IP="10.214.3.100"
 
 INSTANCE_TYPE="t2.micro"
 KEY_NAME="${KEY_NAME}"
@@ -466,7 +466,7 @@ echo "${INSTANCE_NAME} created";
 INSTANCE_NAME="XMPP-2"
 SUBNET_ID="${SUBNET_PRIVATE1}"
 SECURITY_GROUP_ID="${SG_ID_XMPP}"
-PRIVATE_IP="10.0.3.200"
+PRIVATE_IP="10.214.3.200"
 
 INSTANCE_TYPE="t2.micro"
 KEY_NAME="${KEY_NAME}"
@@ -498,7 +498,7 @@ echo "${INSTANCE_NAME} created";
 INSTANCE_NAME="WORDPRESS-1"
 SUBNET_ID="${SUBNET_PRIVATE2}"
 SECURITY_GROUP_ID="${SG_ID_WORDPRESS}"
-PRIVATE_IP="10.0.4.100"
+PRIVATE_IP="10.214.4.100"
 
 INSTANCE_TYPE="t2.micro"
 KEY_NAME="${KEY_NAME}"
@@ -525,7 +525,7 @@ echo "${INSTANCE_NAME} created"
 INSTANCE_NAME="WORDPRESS-2"
 SUBNET_ID="${SUBNET_PRIVATE2}"
 SECURITY_GROUP_ID="${SG_ID_WORDPRESS}"
-PRIVATE_IP="10.0.4.200"
+PRIVATE_IP="10.214.4.200"
 
 INSTANCE_TYPE="t2.micro"
 KEY_NAME="${KEY_NAME}"
@@ -621,7 +621,7 @@ aws ec2 authorize-security-group-egress \
 INSTANCE_NAME="RAID-RSYNC"                    
 SUBNET_ID="${SUBNET_PRIVATE1}"               
 SECURITY_GROUP_ID="${SG_ID_UBUNTU}"          
-PRIVATE_IP="10.0.3.250"                      
+PRIVATE_IP="10.214.3.250"                      
 
 INSTANCE_TYPE="t2.micro"              
 
