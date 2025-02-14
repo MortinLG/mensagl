@@ -68,7 +68,7 @@ log = { --disable for extra privacy
         {'upload.${DUCKDNS_SUBDOMAIN}.duckdns.org', 'file uploads'};
         {'lobby.${DUCKDNS_SUBDOMAIN}.duckdns.org', 'group chats'};
 }
-admin = { 'mario@${DUCKDNS_SUBDOMAIN}.duckdns.org' };
+admin = { 'martin@${DUCKDNS_SUBDOMAIN}.duckdns.org' };
 VirtualHost '${DUCKDNS_SUBDOMAIN}.duckdns.org'
 
 storage = 'sql'
