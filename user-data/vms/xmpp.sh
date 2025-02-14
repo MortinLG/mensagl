@@ -106,4 +106,8 @@ sudo systemctl restart prosody
 sudo prosodyctl register mario ${DUCKDNS_SUBDOMAIN}.duckdns.org Admin123
 sudo prosodyctl register carlos ${DUCKDNS_SUBDOMAIN}.duckdns.org Admin123
 sudo prosodyctl register dieguin ${DUCKDNS_SUBDOMAIN}.duckdns.org Admin123
-sudo prosodyctl register martin ${DUCKDNS_SUBDOMAIN}.duckdns.org Admin123
+sudo prosodyctl register luis ${DUCKDNS_SUBDOMAIN}.duckdns.org Admin123
+sudo prosodyctl register cristina ${DUCKDNS_SUBDOMAIN}.duckdns.org Admin123
+sudo prosodyctl register javi ${DUCKDNS_SUBDOMAIN}.duckdns.org Admin123
+sudo prosodyctl register paco ${DUCKDNS_SUBDOMAIN}.duckdns.org Admin123
+sudo prosodyctl register paula ${DUCKDNS_SUBDOMAIN}.duckdns.org Admin123
